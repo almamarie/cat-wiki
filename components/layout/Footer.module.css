@@ -31,12 +31,14 @@
 }
 
 .copywrite a:hover {
-  color: #fff;
+  color: rgba(41, 21, 7, 0.6);
   background-color: rgb(13, 235, 32);
   font-weight: 400;
 
   box-shadow: 0 1rem 2rem rgba(#000, 0.15);
   transform: translateY(-2px);
+
+  border-radius: 12px;
 }
 
 .copywrite a:active {

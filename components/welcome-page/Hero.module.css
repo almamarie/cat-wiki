@@ -91,6 +91,11 @@
   right: 10.921rem;
 }
 
+.more:hover {
+  background-color: rgba(41, 21, 7, 0.6);
+  color: #fff;
+}
+
 .breeds {
   margin-top: 3rem;
   display: flex;

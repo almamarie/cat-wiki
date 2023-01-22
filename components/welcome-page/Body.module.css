@@ -1,0 +1,78 @@
+.wrapper {
+  padding: 10rem 10.8rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4.626rem;
+  color: #291507;
+}
+
+.text {
+  height: 32.683rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4.698rem;
+}
+
+.divider {
+  width: 5.918rem;
+  height: 0.321rem;
+  background-color: #4d270c;
+  margin-bottom: 1.667rem;
+}
+
+.heading h2 {
+  font-size: 4.8rem;
+  font-weight: 700;
+
+  width: 43.002rem;
+}
+
+.text p {
+  font-size: 1.8rem;
+  font-weight: 500;
+  width: 44.774rem;
+  line-height: 2.2rem;
+}
+
+.more {
+  width: fit-content;
+}
+
+.more a:link,
+.more a:visited {
+  font-size: 1.8rem;
+  color: rgba(41, 21, 7, 0.6);
+  text-decoration: none;
+}
+
+.more a:hover {
+  background-color: rgba(41, 21, 7, 0.6);
+  color: #fff;
+}
+
+.images {
+  display: flex;
+  gap: 2.701rem;
+}
+
+.inner-images {
+  display: flex;
+  gap: 2.856rem;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.image_1 {
+  width: 27.352rem;
+  height: 16.708rem;
+}
+
+.image_2 {
+  width: 19.549rem;
+  height: 29.324rem;
+}
+
+.image_3 {
+  width: 23.847rem;
+  height: 38.587rem;
+}
