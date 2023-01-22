@@ -1,16 +1,16 @@
 /* eslint-disable @next/next/no-img-element */
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import styles from "./BreedImage.module.css";
 
-const BreedImage: React.FC<{ data: { url: string; name: string } }> = (
-  props
-) => {
+const BreedImage: React.FC<{
+  data: { image: StaticImageData; name: string };
+}> = (props) => {
   return (
     <li className={styles.wrapper}>
       <div className={styles["image-wrapper"]}>
-        <img
+        <Image
           alt={props.data.name}
-          src="/public/project-files/image 1.png"
+          src={props.data.image}
           className={styles.image}
         />
       </div>
