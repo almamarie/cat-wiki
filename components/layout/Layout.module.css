@@ -1,0 +1,15 @@
+.wrapper {
+  max-width: 130rem;
+  /* height: 100vh; */
+  margin: 0 auto;
+  margin-top: 2.633rem;
+  /* background-color: red; */
+
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between; */
+}
+
+.footer {
+  margin-top: 10.089rem;
+}
