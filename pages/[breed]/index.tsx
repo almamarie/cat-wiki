@@ -1,11 +1,12 @@
 import BreedMain from "@/components/breed/BreedMain";
 import { ExpectedBreedData } from "@/utils/types";
 import Head from "next/head";
-import styles from "./index.module.css";
-import image from "../../public/project-files/image 1.png";
+import image_1 from "../../public/project-files/image 1.png";
+import image_2 from "../../public/project-files/image 2.png";
+import image_3 from "../../public/project-files/image 3.png";
 
 const DUMMY_DATA: ExpectedBreedData = {
-  image: image,
+  image: image_1,
   name: "Bengal",
   description:
     "Bengals are a lot of fun to live with, but they're definitely not the cat for everyone, or for first-time cat owners. Extremely intelligent, curious and active, they demand a lot of interaction and woe betide the owner who doesn't provide it.",
@@ -22,7 +23,7 @@ const DUMMY_DATA: ExpectedBreedData = {
     "social needs": 5,
     "stranger friendly": 3,
   },
-  moreImages: [image, image, image],
+  moreImages: [image_1, image_2, image_3, image_1, image_2, image_3],
 };
 
 const Handler = () => {

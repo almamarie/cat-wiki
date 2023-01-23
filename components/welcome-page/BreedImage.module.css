@@ -1,7 +1,4 @@
 .image-wrapper {
-  width: 20rem;
-  height: 20rem;
-
   background-color: green;
 
   border-radius: 2.4rem;
@@ -15,4 +12,14 @@
   margin-top: 2rem;
   font-size: 14px;
   font-weight: 600;
+}
+
+.small {
+  width: 20rem;
+  height: 20rem;
+}
+
+.large {
+  width: 27.8rem;
+  height: 27.8rem;
 }

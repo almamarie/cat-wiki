@@ -33,7 +33,7 @@ const Hero = () => {
         <p className={styles.more}>SEE MORE &rarr;</p>
         <ul className={styles.breeds}>
           {DUMMY_BREEDS.map((breed, index) => {
-            return <BreedImage key={index} data={breed} />;
+            return <BreedImage key={index} data={breed} type="small" />;
           })}
         </ul>
       </div>

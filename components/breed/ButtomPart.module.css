@@ -1,0 +1,11 @@
+.title {
+  font-size: 3.6rem;
+  font-weight: 600;
+  margin-top: 8.422rem;
+  margin-bottom: 4rem;
+}
+
+.images-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
