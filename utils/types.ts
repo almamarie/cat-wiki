@@ -26,6 +26,7 @@ export type SearchHistoryType = {
   id: string;
   frequency: number;
   imageUrl: string;
+  description: string;
 };
 
 export type BreedType = {
@@ -67,6 +68,6 @@ export type BreedType = {
     id: string;
     width: number;
     height: number;
-    url: number;
+    url: string;
   };
 };

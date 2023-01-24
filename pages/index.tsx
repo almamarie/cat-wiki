@@ -66,17 +66,16 @@ export async function getStaticProps() {
   const response = await GET_AJAX("/breeds/");
   let breedsList: SearchHistoryType[];
   if (response.success) {
-    const breeds: BreedType = response.message;
-    breedsList = response.message.map(
-      (breed: { name: string; id: string; image: { url: string } }) => {
-        return {
-          name: breed.name,
-          id: breed.id,
-          frequency: 0,
-          imageUrl: breed.image.url,
-        };
-      }
-    );
+    const breeds: BreedType[] = response.message;
+    breedsList = breeds.map((breed) => {
+      return {
+        name: breed.name,
+        id: breed.id,
+        frequency: 0,
+        imageUrl: breed.image.url,
+        description: breed.description,
+      };
+    });
 
     console.log(breedsList);
   }
