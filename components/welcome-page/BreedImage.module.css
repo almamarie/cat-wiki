@@ -1,6 +1,5 @@
-.image-wrapper {
-  background-color: green;
-
+.small,
+.large {
   border-radius: 2.4rem;
 }
 .image {

@@ -1,0 +1,39 @@
+.heading {
+  font-size: 3.6rem;
+  font-weight: 700;
+  margin-top: 4rem;
+  margin-bottom: 5.263rem;
+}
+
+.ul {
+  display: flex;
+  flex-direction: column;
+  gap: 5.5rem;
+}
+
+.li {
+  display: flex;
+  gap: 4.6rem;
+  /* justify-content: space-between; */
+}
+
+.image {
+  width: 17rem;
+  height: 17rem;
+}
+
+.description {
+  width: 88.8rem;
+}
+
+.description h3 {
+  font-size: 3.6rem;
+  font-weight: 600;
+}
+
+.p {
+  font-size: 1.8rem;
+  font-weight: 500;
+
+  margin-top: 2.4rem;
+}

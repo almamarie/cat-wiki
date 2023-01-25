@@ -1,11 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
+import { SearchHistoryType } from "@/utils/types";
 import Image, { StaticImageData } from "next/image";
 import styles from "./BreedImage.module.css";
 
 const BreedImage: React.FC<{
-  data: { image: StaticImageData; name: string };
+  data: SearchHistoryType;
   type: "small" | "large";
 }> = (props) => {
+  console.log("I was called");
   const imageWrapperClasses = `${styles["image-wrapper"]} ${
     props.type === "small" ? styles.small : styles.large
   }`;
@@ -14,8 +16,9 @@ const BreedImage: React.FC<{
       <div className={imageWrapperClasses}>
         <Image
           alt={props.data.name}
-          src={props.data.image}
-          className={styles.image}
+          src={props.data.imageUrl}
+          className={imageWrapperClasses}
+          layout="fill"
         />
       </div>
       <p>{props.data.name}</p>
