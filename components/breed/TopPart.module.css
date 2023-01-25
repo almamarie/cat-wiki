@@ -6,11 +6,12 @@
   padding: 0 3.9rem;
 }
 
-.breed-image,
+/* .breed-image, */
 .image {
   width: 37.104rem;
   height: 37.104rem;
   margin-left: auto;
+  border-radius: 2.4rem;
 }
 
 .breed-description {

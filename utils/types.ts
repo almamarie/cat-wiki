@@ -71,3 +71,11 @@ export type BreedType = {
     url: string;
   };
 };
+
+export type BreedQueryType = {
+  breeds: BreedType[];
+  id: string;
+  url: string;
+  width: number;
+  height: string;
+};

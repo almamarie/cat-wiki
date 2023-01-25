@@ -8,4 +8,9 @@
 .images-wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  row-gap: 5.308rem;
+}
+
+.image {
+  border-radius: 2.4rem;
 }

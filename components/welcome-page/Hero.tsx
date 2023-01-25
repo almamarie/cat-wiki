@@ -30,7 +30,7 @@ const Hero: React.FC<{ mostSearched: SearchHistoryType[] }> = (props) => {
         </Link>
         <ul className={styles.breeds}>
           {props.mostSearched.map((breed, index) => {
-            return <BreedImage key={index} data={breed} type="small" />;
+            return <BreedImage key={index} data={breed} />;
           })}
         </ul>
       </div>

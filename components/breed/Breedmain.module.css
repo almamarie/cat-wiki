@@ -1,0 +1,8 @@
+.image {
+  border-radius: 2.4rem;
+  object-fit: cover;
+}
+
+.image:hover {
+  transform: scale(1.1);
+}

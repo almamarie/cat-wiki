@@ -1,34 +1,24 @@
 /* eslint-disable @next/next/no-img-element */
 import { SearchHistoryType } from "@/utils/types";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./BreedImage.module.css";
 
 const BreedImage: React.FC<{
   data: SearchHistoryType;
-  type: "small" | "large";
 }> = (props) => {
-  const imageWrapperClasses = `${styles["image"]} ${
-    props.type === "small" ? styles.small : styles.large
-  }`;
   return (
-    <li className={styles.wrapper}>
-      {props.type === "small" ? (
+    <li className={styles.wrapper} onClick={() => {}}>
+      <Link href={`/${props.data.id}`}>
         <Image
           alt={props.data.name}
           src={props.data.imageUrl}
-          className={imageWrapperClasses}
+          className={styles.image}
           width={200}
           height={200}
         />
-      ) : (
-        <Image
-          alt={props.data.name}
-          src={props.data.imageUrl}
-          className={imageWrapperClasses}
-          width={270}
-          height={270}
-        />
-      )}
+      </Link>
+
       <p>{props.data.name}</p>
     </li>
   );

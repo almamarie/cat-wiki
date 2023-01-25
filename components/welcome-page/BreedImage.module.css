@@ -1,5 +1,4 @@
-.small,
-.large {
+.image {
   border-radius: 2.4rem;
   object-fit: cover;
 }
