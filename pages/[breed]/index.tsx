@@ -9,6 +9,7 @@ import {
 } from "@/utils/types";
 import { NextPage } from "next";
 import Head from "next/head";
+import { Fragment } from "react";
 import image_1 from "../../public/project-files/image 1.png";
 import image_2 from "../../public/project-files/image 2.png";
 import image_3 from "../../public/project-files/image 3.png";
@@ -45,11 +46,20 @@ const Handler: NextPage<ExpectedDataType> = (props) => {
   return (
     <>
       <Head>
-        <title>{DUMMY_DATA.name}</title>
+        <title>{breedData.name}</title>
         <meta name="description" content={DUMMY_DATA.description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <BreedMain moreImages={props.moreImages} breed={breedData} />
+      <Fragment>
+        {props.error ? (
+          <p>
+            An error occured.
+            <br /> Please try again
+          </p>
+        ) : (
+          <BreedMain moreImages={props.moreImages} breed={breedData} />
+        )}
+      </Fragment>
     </>
   );
 };
@@ -72,8 +82,6 @@ export const getStaticPaths = async () => {
       },
     };
   });
-
-  // console.log(paths);
   return {
     fallback: false,
     paths,
