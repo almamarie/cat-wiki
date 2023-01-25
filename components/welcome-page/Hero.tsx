@@ -21,7 +21,12 @@ const Hero: React.FC<{ mostSearched: SearchHistoryType[] }> = (props) => {
   return (
     <section className={styles.wrapper}>
       <div className={styles.top}>
-        <Image alt="hero" src={heroImage} className={styles["top-image"]} />
+        <Image
+          alt="hero"
+          src={heroImage}
+          className={styles["top-image"]}
+          priority
+        />
         <Logo type="big" fill="#fff" />
         <p>Get to know more about your cat breed</p>
         <input type="search" placeholder="Enter your breed" />

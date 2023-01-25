@@ -42,65 +42,10 @@ async function put(
 }
 
 export async function getStaticProps() {
-  // fetch the search history from the database
-  // try {
-  //   const response = await fetch(
-  //     "https://cat-wiki-a00ec-default-rtdb.firebaseio.com/search-history.json"
-  //   );
-
-  //   if (response.status != 200) {
-  //     throw new Error("an error occured");
-  //   }
-  //   const data: SearchHistoryType[] = await response.json();
-
-  //   data.sort((currentHistory, nextHistory) => {
-  //     return nextHistory.frequency - currentHistory.frequency;
-  //   });
-
-  //   console.log(data.slice(0, 3));
-
-  //   // returnData = searchHistory.slice(0, 3);
-
-  //   // console.log(searchHistory);
-  // } catch (error) {
-  //   console.log(error);
-  // }
-  // sort in DSC order
-
-  // return the first 3
-
-  // const response = await GET_AJAX("/breeds/");
-  // let breedsList: SearchHistoryType[];
-  // if (response.success) {
-  //   const breeds: BreedType[] = response.message;
-  //   breedsList = breeds.map((breed) => {
-  //     if (breed.name === "European Burmese" || breed.name === "Malayan") {
-  //       return {
-  //         name: breed.name,
-  //         id: breed.id,
-  //         frequency: 0,
-  //         imageUrl: "",
-  //         description: breed.description,
-  //       };
-  //     }
-  //     return {
-  //       name: breed.name,
-  //       id: breed.id,
-  //       frequency: 0,
-  //       imageUrl: breed.image.url,
-  //       description: breed.description,
-  //     };
-  //   });
-
-  //   console.log("");
-  // }
-
-  // fetch the search history from the database
-
-  const response = await fetch(
-    "https://cat-wiki-a00ec-default-rtdb.firebaseio.com/search-history.json"
-  );
-  const data = await response.json();
+  // const response = await fetch(
+  //   "https://cat-wiki-a00ec-default-rtdb.firebaseio.com/search-history.json"
+  // );
+  // const data = await response.json();
 
   try {
     const response = await fetch(
@@ -116,20 +61,14 @@ export async function getStaticProps() {
       return nextHistory.frequency - currentHistory.frequency;
     });
 
-    // console.log(data.slice(0, 4));
-
-    // returnData = searchHistory.slice(0, 3);
-
-    // console.log(searchHistory);
+    return {
+      props: {
+        mostSearched: data.slice(0, 4),
+      },
+    };
   } catch (error) {
     console.log(error);
   }
-
-  return {
-    props: {
-      mostSearched: data.slice(0, 4),
-    },
-  };
 }
 
 export default Home;

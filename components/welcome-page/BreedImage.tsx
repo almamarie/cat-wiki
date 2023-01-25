@@ -8,19 +8,16 @@ const BreedImage: React.FC<{
   type: "small" | "large";
 }> = (props) => {
   console.log("I was called");
-  const imageWrapperClasses = `${styles["image-wrapper"]} ${
+  const imageWrapperClasses = `${styles["image"]} ${
     props.type === "small" ? styles.small : styles.large
   }`;
   return (
     <li className={styles.wrapper}>
-      <div className={imageWrapperClasses}>
-        <Image
-          alt={props.data.name}
-          src={props.data.imageUrl}
-          className={imageWrapperClasses}
-          layout="fill"
-        />
-      </div>
+      <img
+        alt={props.data.name}
+        src={props.data.imageUrl}
+        className={imageWrapperClasses}
+      />
       <p>{props.data.name}</p>
     </li>
   );
