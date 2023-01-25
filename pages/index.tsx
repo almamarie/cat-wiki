@@ -10,7 +10,6 @@ type ExpectedDataType = {
 };
 
 const Home: NextPage<ExpectedDataType> = (props) => {
-  console.log(props.mostSearched);
   return (
     <>
       <Head>
@@ -42,11 +41,6 @@ async function put(
 }
 
 export async function getStaticProps() {
-  // const response = await fetch(
-  //   "https://cat-wiki-a00ec-default-rtdb.firebaseio.com/search-history.json"
-  // );
-  // const data = await response.json();
-
   try {
     const response = await fetch(
       "https://cat-wiki-a00ec-default-rtdb.firebaseio.com/search-history.json"

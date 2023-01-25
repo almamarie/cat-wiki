@@ -1,113 +1,27 @@
 import { SearchHistoryType } from "@/utils/types";
 import styles from "./index.module.css";
 import Image from "next/image";
+import { NextPage } from "next";
 
-// to be removed
-import IMAGE_1 from "../../public/project-files/image 1.png";
-import IMAGE_2 from "../../public/project-files/image 2.png";
-import IMAGE_3 from "../../public/project-files/image 3.png";
+type ExpectedDataType = {
+  mostSearched: SearchHistoryType[];
+};
 
-function Handler() {
-  const DUMMY_DATA = [
-    {
-      frequency: 0,
-      id: "ycho",
-      name: "Chocolate",
-      description:
-        "York Chocolate cats are known to be true lap cats with a sweet temperament. They love to be cuddled and petted. Their curious nature makes them follow you all the time and participate in almost everything you do, even if it's related to water: unlike many other cats, York Chocolates love it.",
-      imageUrl: IMAGE_1,
-    },
-
-    {
-      frequency: 0,
-      id: "ycho",
-      name: "Chocolate",
-      description:
-        "York Chocolate cats are known to be true lap cats with a sweet temperament. They love to be cuddled and petted. Their curious nature makes them follow you all the time and participate in almost everything you do, even if it's related to water: unlike many other cats, York Chocolates love it.",
-      imageUrl: IMAGE_2,
-    },
-
-    {
-      frequency: 0,
-      id: "ycho",
-      name: "Chocolate",
-      description:
-        "York Chocolate cats are known to be true lap cats with a sweet temperament. They love to be cuddled and petted. Their curious nature makes them follow you all the time and participate in almost everything you do, even if it's related to water: unlike many other cats, York Chocolates love it.",
-      imageUrl: IMAGE_3,
-    },
-    {
-      frequency: 0,
-      id: "ycho",
-      name: "Chocolate",
-      description:
-        "York Chocolate cats are known to be true lap cats with a sweet temperament. They love to be cuddled and petted. Their curious nature makes them follow you all the time and participate in almost everything you do, even if it's related to water: unlike many other cats, York Chocolates love it.",
-      imageUrl: IMAGE_1,
-    },
-
-    {
-      frequency: 0,
-      id: "ycho",
-      name: "Chocolate",
-      description:
-        "York Chocolate cats are known to be true lap cats with a sweet temperament. They love to be cuddled and petted. Their curious nature makes them follow you all the time and participate in almost everything you do, even if it's related to water: unlike many other cats, York Chocolates love it.",
-      imageUrl: IMAGE_2,
-    },
-
-    {
-      frequency: 0,
-      id: "ycho",
-      name: "Chocolate",
-      description:
-        "York Chocolate cats are known to be true lap cats with a sweet temperament. They love to be cuddled and petted. Their curious nature makes them follow you all the time and participate in almost everything you do, even if it's related to water: unlike many other cats, York Chocolates love it.",
-      imageUrl: IMAGE_3,
-    },
-    {
-      frequency: 0,
-      id: "ycho",
-      name: "Chocolate",
-      description:
-        "York Chocolate cats are known to be true lap cats with a sweet temperament. They love to be cuddled and petted. Their curious nature makes them follow you all the time and participate in almost everything you do, even if it's related to water: unlike many other cats, York Chocolates love it.",
-      imageUrl: IMAGE_1,
-    },
-
-    {
-      frequency: 0,
-      id: "ycho",
-      name: "Chocolate",
-      description:
-        "York Chocolate cats are known to be true lap cats with a sweet temperament. They love to be cuddled and petted. Their curious nature makes them follow you all the time and participate in almost everything you do, even if it's related to water: unlike many other cats, York Chocolates love it.",
-      imageUrl: IMAGE_2,
-    },
-
-    {
-      frequency: 0,
-      id: "ycho",
-      name: "Chocolate",
-      description:
-        "York Chocolate cats are known to be true lap cats with a sweet temperament. They love to be cuddled and petted. Their curious nature makes them follow you all the time and participate in almost everything you do, even if it's related to water: unlike many other cats, York Chocolates love it.",
-      imageUrl: IMAGE_3,
-    },
-
-    {
-      frequency: 0,
-      id: "ycho",
-      name: "Chocolate",
-      description:
-        "York Chocolate cats are known to be true lap cats with a sweet temperament. They love to be cuddled and petted. Their curious nature makes them follow you all the time and participate in almost everything you do, even if it's related to water: unlike many other cats, York Chocolates love it.",
-      imageUrl: IMAGE_3,
-    },
-  ];
+const Handler: NextPage<ExpectedDataType> = (props) => {
   return (
     <main>
       <h2 className={styles.heading}>Top 10 Most Searched Breeds</h2>
       <ul className={styles.ul}>
-        {DUMMY_DATA.map((data, index) => {
+        {props.mostSearched.map((data, index) => {
           return (
             <li key={index} className={styles.li}>
               <Image
                 src={data.imageUrl}
                 alt={data.name}
                 className={styles.image}
+                width={170}
+                height={170}
+                priority
               />
               <div className={styles.description}>
                 <h3>{`${index + 1}. ${data.name}`}</h3>
@@ -119,6 +33,37 @@ function Handler() {
       </ul>
     </main>
   );
-}
+};
+
+export const getStaticProps = async () => {
+  // fetch most searched breeds from database
+  try {
+    const response = await fetch(
+      "https://cat-wiki-a00ec-default-rtdb.firebaseio.com/search-history.json"
+    );
+
+    if (response.status != 200) {
+      throw new Error("an error occured");
+    }
+    const data: SearchHistoryType[] = await response.json();
+
+    data.sort((currentHistory, nextHistory) => {
+      return nextHistory.frequency - currentHistory.frequency;
+    });
+
+    return {
+      props: {
+        mostSearched: data.slice(0, 10),
+      },
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      props: {
+        mostSearched: [],
+      },
+    };
+  }
+};
 
 export default Handler;

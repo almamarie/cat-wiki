@@ -14,12 +14,12 @@
 .li {
   display: flex;
   gap: 4.6rem;
-  /* justify-content: space-between; */
 }
 
 .image {
   width: 17rem;
   height: 17rem;
+  border-radius: 2.4rem;
 }
 
 .description {
