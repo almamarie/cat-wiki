@@ -1,11 +1,10 @@
 import Image, { StaticImageData } from "next/image";
-import BreedImage from "../welcome-page/BreedImage";
 import styles from "./ButtomPart.module.css";
 
 const ButtomPart: React.FC<{ moreImages: string[]; name: string }> = (
   props
 ) => {
-  console.log(`more images 🥰 ${props.moreImages}`);
+  // console.log(`more images 🥰 ${props.moreImages}`);
   return (
     <section>
       <h3 className={styles.title}>Other Photos</h3>

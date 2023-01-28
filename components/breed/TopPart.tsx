@@ -15,10 +15,13 @@ const TopPart: React.FC<{ breed: BreedType }> = (props) => {
     stranger_friendly: props.breed.stranger_friendly,
   };
   const breed = props.breed;
-  console.log(breed);
-  console.log(
-    ` here oooooo o https://cdn2.thecatapi.com/images/${props.breed.reference_image_id}.jpg`
-  );
+  let name: string = "";
+  try {
+    name = breed.name;
+  } catch (error) {
+    name = "";
+    console.log(`The error occured here: ${breed}`);
+  }
   return (
     <section className={styles["top-half"]}>
       <div className={styles["breed-image"]}>
@@ -31,7 +34,7 @@ const TopPart: React.FC<{ breed: BreedType }> = (props) => {
         />
       </div>
       <div className={styles["breed-description"]}>
-        <h3 className={styles.name}>{breed.name}</h3>
+        <h3 className={styles.name}>{name}</h3>
         <p className={styles.description}>{breed.description}</p>
         <p>
           <span className={styles.label}>Temperament</span>:{" "}
