@@ -1,5 +1,5 @@
 import { BreedType, ExpectedBreedData } from "@/utils/types";
-import styles from "./BreedMain.module.css";
+// import styles from "./BreedMain.module.css";
 import ButtomPart from "./ButtomPart";
 import TopPart from "./TopPart";
 
@@ -8,7 +8,7 @@ const BreedMain: React.FC<{ breed: BreedType; moreImages: string[] }> = (
 ) => {
   const breed = props.breed;
   return (
-    <main className={styles.wrapper}>
+    <main>
       <TopPart breed={breed} />
       <ButtomPart name={breed.name} moreImages={props.moreImages} />
     </main>
