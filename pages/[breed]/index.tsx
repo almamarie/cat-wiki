@@ -4,7 +4,8 @@ import { getBreedsFromFirebase } from "@/utils/get-data-from-firebase";
 import { BreedType, ExpectedBreedData, SearchHistoryType } from "@/utils/types";
 import { NextPage } from "next";
 import Head from "next/head";
-import { Fragment, useState } from "react";
+import { useRouter } from "next/router";
+import { Fragment, useEffect, useRef, useState } from "react";
 
 type ExpectedDataType = {
   breed: BreedType[];
@@ -12,20 +13,121 @@ type ExpectedDataType = {
   moreImages: string[];
 };
 
-const Handler: NextPage<ExpectedDataType> = (props) => {
-  const [error, setError] = useState(props.error);
-  const breedData = props.breed[0];
-  let description: string = "";
-  let name: string = "";
-  try {
-    name = breedData.name;
-    description = breedData.description;
-  } catch (error) {
-    setError(true);
-    name = "";
-    description = "";
-    console.log(`The error occured here: ${breedData}`);
+const Handler = () => {
+  // const Handler: NextPage<ExpectedDataType> = (props) => {
+
+  // const [error, setError] = useState(props.error);
+  // const breedData = props.breed[0];
+  // let description: string = "";
+  // let name: string = "";
+
+  // try {
+  //   name = breedData.name;
+  //   description = breedData.description;
+  // } catch (error) {
+  //   name = "";
+  //   description = "";
+  //   console.log(`The error occured here: ${breedData}`);
+  //   setError(true);
+  // }
+
+  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [breedData, setBreedData] = useState<BreedType>();
+  const [moreImages, setMoreImages] = useState<string[]>([]);
+  const [name, setName] = useState<string>("");
+  const [description, setDescription] = useState("");
+
+  const router = useRouter();
+  const RouterbBreedId = router.query.breed;
+  console.log("RouterbBreedId: ", RouterbBreedId);
+  const breedId = "beng";
+
+  const [isFirst, setIsFirst] = useState(true);
+  useEffect(() => {
+    if (!isFirst) {
+      return;
+    }
+
+    if (isFirst) {
+      setIsFirst(false);
+    }
+    async function fetchData() {
+      try {
+        setIsLoading(true);
+
+        if (breedId === undefined) {
+          throw new Error("no breed id found");
+        }
+        const catApiResponse = await GET_AJAX(
+          `/images/search?breed_ids=${RouterbBreedId}`
+        );
+        console.log(catApiResponse);
+        setBreedData(catApiResponse.message[0].breeds[0]);
+
+        // get more images from the cat API:
+        let moreImagesResponse = await GET_AJAX(
+          `/images/search?limit=10&breed_ids=${"beng"}`
+        );
+
+        setMoreImages(() => {
+          return moreImagesResponse.message.map((data: { url: string }) => {
+            return data.url;
+          });
+        });
+
+        setName(() => {
+          if (breedData?.name) {
+            return breedData?.name;
+          } else {
+            return "error";
+          }
+        });
+        setDescription(() => {
+          if (breedData?.description) {
+            return breedData?.description;
+          } else {
+            return "error";
+          }
+        });
+
+        console.log(breedData);
+        console.log(moreImages);
+
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+        setError(true);
+      }
+    }
+
+    fetchData();
+  }, [
+    breedData,
+    breedData?.description,
+    breedData?.name,
+    breedId,
+    isFirst,
+    moreImages,
+    RouterbBreedId,
+  ]);
+
+  function generateHtml() {
+    if (error || !breedData) {
+      return (
+        <p>
+          An error occured.
+          <br /> Please try again
+        </p>
+      );
+    } else {
+      return <BreedMain moreImages={moreImages} breed={breedData!} />;
+    }
   }
+
+  // if(!breedData){
+
+  // }
 
   return (
     <>
@@ -34,16 +136,7 @@ const Handler: NextPage<ExpectedDataType> = (props) => {
         <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Fragment>
-        {error ? (
-          <p>
-            An error occured.
-            <br /> Please try again
-          </p>
-        ) : (
-          <BreedMain moreImages={props.moreImages} breed={breedData} />
-        )}
-      </Fragment>
+      <Fragment>{generateHtml()}</Fragment>
     </>
   );
 };
@@ -123,7 +216,3 @@ export const getStaticProps = async (context: any) => {
 };
 
 export default Handler;
-
-// /[breed]: /tang
-// /[breed]: /tvan
-// /[breed]: /ycho
