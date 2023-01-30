@@ -1,5 +1,4 @@
-import { BreedType, ExpectedBreedData } from "@/utils/types";
-// import styles from "./BreedMain.module.css";
+import { BreedType } from "@/utils/types";
 import ButtomPart from "./ButtomPart";
 import TopPart from "./TopPart";
 

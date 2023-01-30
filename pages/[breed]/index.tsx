@@ -39,9 +39,8 @@ const Handler = () => {
   const [description, setDescription] = useState("");
 
   const router = useRouter();
-  const RouterbBreedId = router.query.breed;
-  console.log("RouterbBreedId: ", RouterbBreedId);
-  const breedId = "beng";
+  const breedId = router.query.breed;
+  // const breedId = "beng";
 
   const [isFirst, setIsFirst] = useState(true);
   useEffect(() => {
@@ -60,14 +59,14 @@ const Handler = () => {
           throw new Error("no breed id found");
         }
         const catApiResponse = await GET_AJAX(
-          `/images/search?breed_ids=${RouterbBreedId}`
+          `/images/search?breed_ids=${breedId}`
         );
         console.log(catApiResponse);
         setBreedData(catApiResponse.message[0].breeds[0]);
 
         // get more images from the cat API:
         let moreImagesResponse = await GET_AJAX(
-          `/images/search?limit=10&breed_ids=${"beng"}`
+          `/images/search?limit=10&breed_ids=${breedId}`
         );
 
         setMoreImages(() => {
@@ -109,7 +108,6 @@ const Handler = () => {
     breedId,
     isFirst,
     moreImages,
-    RouterbBreedId,
   ]);
 
   function generateHtml() {
@@ -124,10 +122,6 @@ const Handler = () => {
       return <BreedMain moreImages={moreImages} breed={breedData!} />;
     }
   }
-
-  // if(!breedData){
-
-  // }
 
   return (
     <>
